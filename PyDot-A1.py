@@ -1,0 +1,51 @@
+import pydot
+graph = pydot.Dot(graph_type='digraph')
+
+nodo = pydot.Node("Leandro Estrada")
+nodoM = pydot.Node("main")
+nodoP = pydot.Node("parse")
+nodoCLN = pydot.Node("cleanup")
+nodoEXE = pydot.Node("execute")
+nodoINIT = pydot.Node("init")
+nodoMS = pydot.Node("make_string")
+nodoCOMPARE = pydot.Node("compare")
+nodoPRINT = pydot.Node("printf")
+
+graph.add_node(nodo)
+graph.add_node(nodoM)
+graph.add_node(nodoP)
+graph.add_node(nodoCLN)
+graph.add_node(nodoEXE)
+graph.add_node(nodoINIT)
+graph.add_node(nodoMS)
+graph.add_node(nodoCOMPARE)
+graph.add_node(nodoPRINT)
+
+
+edge1 = pydot.Edge(nodoM, nodoP)
+edge2= pydot.Edge(nodoM, nodoCLN)
+edge3 = pydot.Edge(nodoM, nodoINIT)
+edge4 = pydot.Edge(nodoM, nodoPRINT)
+edge5 = pydot.Edge(nodoP, nodoEXE)
+edge6 = pydot.Edge(nodoINIT, nodoMS)
+edge7 = pydot.Edge(nodoEXE, nodoMS)
+edge8 = pydot.Edge(nodoEXE, nodoCOMPARE)
+edge9 = pydot.Edge(nodoEXE, nodoPRINT)
+
+box=pydot.Cluster('b', label='Autor:',shape='rectangle')
+graph.add_subgraph(box)
+
+box.add_node(nodo)
+
+graph.add_edge(edge1)
+graph.add_edge(edge2)
+graph.add_edge(edge3)
+graph.add_edge(edge4)
+graph.add_edge(edge5)
+graph.add_edge(edge6)
+graph.add_edge(edge7)
+graph.add_edge(edge8)
+graph.add_edge(edge9)
+
+#graph.write('ActividadPyDot-1.png')
+graph.write_png('ActividadPyDot-1.png')
